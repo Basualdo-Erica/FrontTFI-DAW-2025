@@ -60,3 +60,5 @@ ormconfig.json
 
 # Source maps
 *.js.map
+
+.angular
