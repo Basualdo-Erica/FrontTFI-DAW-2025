@@ -1,0 +1,124 @@
+<div class="crear-encuesta-container">
+  <h2>Crear nueva encuesta</h2>
+
+  <form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">
+    <div class="campo-centrado">
+      <input
+        pInputText
+        id="nombreEncuesta"
+        formControlName="nombre"
+        placeholder="Nombre de la encuesta"
+        class="nombre-encuesta-input"
+      />
+      <app-texto-error [control]="form.get('nombre')"></app-texto-error>
+    </div>
+
+    <section class="seccion-preguntas">
+      <h3>Preguntas</h3>
+      <p *ngIf="preguntas.length === 0" class="mensaje-sin-preguntas">
+        Aún no agregaste ninguna pregunta.
+      </p>
+
+      <div
+        class="pregunta"
+        *ngFor="let pregunta of preguntas.controls; let i = index"
+      >
+        <div class="contenido-pregunta" *ngIf="pregunta.value">
+          <app-seccion [pregunta]="pregunta.value"></app-seccion>
+        </div>
+
+        <div class="pregunta-acciones" *ngIf="pregunta.value">
+          <span class="tipo">
+            {{ getTipoPreguntaPresentacion(pregunta.value.tipo) }}
+          </span>
+
+          <button
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            class="btn-icono btn-editar"
+            (click)="editarPregunta(i)"
+            pTooltip="Editar"
+            tooltipPosition="top"
+          ></button>
+
+          <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            class="btn-icono btn-eliminar"
+            (click)="confirmarEliminarPregunta(i)"
+            pTooltip="Eliminar"
+            tooltipPosition="top"
+          ></button>
+        </div>
+      </div>
+    </section>
+
+    <div class="botones">
+      <button
+        pButton
+        type="button"
+        label="Agregar pregunta"
+        (click)="abrirDialog()"
+        class="agregar-pregunta"
+      ></button>
+      <button
+        pButton
+        type="submit"
+        label="Crear encuesta"
+        class="crear-encuesta"
+      ></button>
+    </div>
+  </form>
+
+  <app-gestion-pregunta-dialog
+    [(visible)]="dialogGestionPreguntaVisible"
+    (preguntaCreada)="onPreguntaCreada($event)"
+    (close)="onDialogClose()"
+    [preguntaParaEditar]="preguntaSeleccionadaParaEdicion"
+  ></app-gestion-pregunta-dialog>
+
+  <p-dialog
+    header="¿Confirmar eliminación?"
+    [(visible)]="mostrarModal"
+    [modal]="true"
+    [closable]="false"
+    [style]="{width: '380px', borderRadius: '1rem', backgroundColor: '#fff9db'}"
+    [baseZIndex]="10000"
+    [dismissableMask]="true"
+    [contentStyle]="{'padding': '1.5rem', 'text-align': 'center'}"
+  >
+    <div class="contenido-modal">
+      <p class="mensaje-modal">
+        ¿Estás segura/o que querés eliminar esta pregunta?
+      </p>
+
+      <div
+        class="botones-modal"
+        style="display: flex; justify-content: space-between; margin-top: 2rem;"
+      >
+        <button
+          pButton
+          type="button"
+          label="Cancelar"
+          styleClass="p-button-text boton-cancelar"
+          (click)="cancelarEliminacion()"
+          style="flex: 1; margin-right: 1rem;"
+        ></button>
+
+        <button
+          pButton
+          type="button"
+          label="Eliminar"
+          styleClass="p-button-danger boton-eliminar"
+          (click)="confirmarEliminacion()"
+          style="flex: 1;"
+        ></button>
+      </div>
+    </div>
+  </p-dialog>
+
+  <p-confirmDialog></p-confirmDialog>
+  <p-toast></p-toast>
+</div>

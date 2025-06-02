@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';  
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-comienzo',
@@ -8,6 +10,8 @@ import { Component } from '@angular/core';
 export class ComienzoComponent {
   menuOpen = false;
 
+  constructor(private router: Router) {}  
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
@@ -15,4 +19,10 @@ export class ComienzoComponent {
   closeMenu() {
     this.menuOpen = false;
   }
+
+  irACrearEncuesta() {
+    this.router.navigate(['/crear-encuesta']); 
+  }
 }
+
+

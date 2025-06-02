@@ -1,0 +1,149 @@
+.dialog-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 450px;
+  background: #f7c1cb;
+  padding: 1.5rem 2rem;
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/*estilos para los botones del modal */
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+/*estilo para el boton agregar opción */
+button.add-btn {
+  background-color: #6460b8 !important;
+  color: rgb(255, 251, 238);
+}
+
+button.add-btn:hover {
+  background-color: #7370b8 !important;
+}
+
+/*estilo para el boton Eliminar opción */
+button.delete-btn {
+  background-color: #ff4747 !important;
+  color: rgb(255, 251, 238);
+  margin-left: 10px;
+}
+
+button.delete-btn:hover {
+  background-color: #bb4545 !important;
+}
+
+/*estilo de los botones en el pie del formulario*/
+button[type="button"]:nth-child(2) {
+  background-color: #818181;
+}
+
+button[type="button"]:nth-child(2):hover {
+  background-color: #d13333;
+}
+
+/* Inputs y selects */
+input[type="text"], select {
+  width: calc(100% - 120px);
+  padding: 0.5rem 0.7rem;
+  margin: 0.3rem 0 1rem 0;
+  border: 1px solid #ab7be2;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  display: inline-block; 
+}
+
+input[type="text"]:focus, select:focus {
+  outline: none;
+  border-color: #6460b8;
+  box-shadow: 0 0 5px rgba(201, 84, 255, 0.5);
+}
+
+/* Títulos */
+h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+/*labels */
+label {
+  font-weight: 600;
+  color: #555;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/*radio buttons y checkboxes */
+input[type="radio"], input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/*contenedor de opciones con scroll */
+.opciones-container {
+  max-height: 200px; 
+  overflow-y: auto;  
+  margin-bottom: 1rem; 
+  padding-right: 10px; 
+}
+
+/*estilo para las opciones dentro del contenedor */
+.opcion-item {
+  margin-bottom: 10px;
+}
+
+
+div[style*="margin-top: 10px"] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+div[style*="margin-top: 10px"] input[type="text"] {
+  flex-grow: 1;
+}
+
+/*fondo oscuro para el modal */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+

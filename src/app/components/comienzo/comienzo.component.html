@@ -1,19 +1,6 @@
-<header>
-  <div class="logo">Quaestio</div>
-  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <nav id="nav-menu" class="nav-buttons" hidden>
-    <button>Crear encuesta</button>
-    <button>Ver respuestas</button>
-  </nav>
-</header>
-
 <div class="container">
   <main>
-    <section class="intro-text">
+    <section class="intro-text" (click)="irACrearEncuesta()">
       <h1>Bienvenido a Quaestio</h1>
       <p>
         Creá encuestas de forma anónima, compartilas fácilmente y visualizá los resultados con un solo clic.

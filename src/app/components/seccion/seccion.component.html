@@ -1,0 +1,10 @@
+<section [style]="style()">
+  <p><strong>Pregunta {{ numeroPregunta }}:</strong> {{ pregunta.texto }}</p>
+
+  <div *ngIf="pregunta.opciones && pregunta.opciones.length > 0">
+    <h4>Opciones:</h4>
+    <ul>
+      <li *ngFor="let opcion of pregunta.opciones">{{ opcion.texto }}</li>
+    </ul>
+  </div>
+</section>

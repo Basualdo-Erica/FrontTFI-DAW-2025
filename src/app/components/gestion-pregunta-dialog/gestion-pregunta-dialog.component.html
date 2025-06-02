@@ -1,0 +1,47 @@
+<p-toast></p-toast>
+
+<div *ngIf="visible" class="dialog-container">
+  <h3>Gestión de Pregunta</h3>
+  <p>Acá podés crear o editar una pregunta.</p>
+
+  <label for="textoPregunta">Texto de la pregunta:</label>
+  <input
+    id="textoPregunta"
+    type="text"
+    [(ngModel)]="textoPregunta"
+    placeholder="Escribí la pregunta..."
+  />
+
+  <label for="tipoPregunta">Tipo de pregunta:</label>
+  <select id="tipoPregunta" [(ngModel)]="tipoPregunta" (change)="opciones = []">
+    <option value="LIBRE">Libre</option>
+    <option value="OPCION_SIMPLE">Opción Simple</option>
+    <option value="OPCION_MULTIPLE">Opción Múltiple</option>
+  </select>
+
+  <div *ngIf="tipoPregunta === 'OPCION_SIMPLE' || tipoPregunta === 'OPCION_MULTIPLE'">
+    <h4>Opciones</h4>
+    <button (click)="agregarOpcion()" type="button" class="add-btn">Agregar opción</button>
+
+  
+    <div class="opciones-container">
+      <div *ngFor="let opcion of opciones; let i = index" class="opcion-item">
+        <input
+          type="text"
+          placeholder="Texto de la opción"
+          [(ngModel)]="opcion.texto"
+        />
+        <button (click)="eliminarOpcion(i)" type="button" class="delete-btn">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-buttons" style="margin-top: 20px;">
+    <button (click)="guardarPregunta()" type="button">Guardar Pregunta</button>
+    <button (click)="cerrarDialog()" type="button">Cancelar</button>
+  </div>
+</div>
+
+<div *ngIf="visible" class="dialog-overlay" (click)="cerrarDialog()"></div>

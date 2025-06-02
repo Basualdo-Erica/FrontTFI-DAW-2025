@@ -1,0 +1,26 @@
+.dialog-container {
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 1rem;
+}

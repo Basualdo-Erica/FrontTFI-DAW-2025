@@ -1,0 +1,11 @@
+<div *ngIf="dialogVisible()" class="dialog-container">
+  <h3>Gestión de Opción</h3>
+  <p>Acá vas a poder crear o editar una opción.</p>
+
+  <div class="dialog-buttons">
+    <button (click)="guardarOpcion()">Guardar Opción</button>
+    <button (click)="cerrarDialog()">Cancelar</button>
+  </div>
+</div>
+
+<div *ngIf="dialogVisible()" class="dialog-overlay"></div>

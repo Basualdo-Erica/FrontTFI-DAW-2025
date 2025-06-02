@@ -1,0 +1,68 @@
+::ng-deep .p-toast-message {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  border: 2px solid rgb(44, 44, 44) !important;
+  color: rgb(255, 255, 255) !important;
+  font-size: 1.2rem !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+::ng-deep .p-toast-message {
+  max-width: 80%;
+}
+
+
+/*modal PRIMENG*/
+::ng-deep .p-dialog {
+  border-radius: 1rem !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep .p-dialog-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #6460b8;
+  text-align: center !important;
+  padding: 10px 15px !important;
+  position: relative;
+}
+
+::ng-deep .p-dialog-header .p-dialog-header-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+}
+
+::ng-deep .p-dialog .p-dialog-content {
+  padding: 1.5rem !important;
+  text-align: center;
+}
+
+::ng-deep .p-dialog-mask {
+  background-color: rgba(29, 20, 20, 0.7) !important;
+}
+
+::ng-deep .p-dialog-footer {
+  display: flex;
+  justify-content: space-between; 
+  gap: 1rem; 
+  padding: 1rem !important; 
+  flex-shrink: 0;
+}
+
+::ng-deep .p-button {
+  padding: 10px 30px !important;
+}
+
+::ng-deep .p-confirm-dialog .p-confirmdialog-reject-button {
+  margin-left: 0; 
+}
+
+::ng-deep .p-confirm-dialog .p-confirmdialog-accept-button {
+  margin-right: 0;
+}

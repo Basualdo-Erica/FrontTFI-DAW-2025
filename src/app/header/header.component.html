@@ -1,0 +1,13 @@
+<header>
+  <div class="logo" (click)="irAlInicio()">Quaestio</div>
+  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav id="nav-menu" class="nav-buttons" hidden>
+    <button (click)="irAlInicio()">Inicio</button>
+    <button (click)="irACrearEncuesta()">Crear nueva encuesta</button>
+    <button (click)="irAVerRespuesta()">Ver respuestas</button>
+  </nav>
+</header>
