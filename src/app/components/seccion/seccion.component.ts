@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
 export class SeccionComponent {
   @Input() pregunta!: PreguntaDTO;
 
-  // Inputs para los estilos (los valores por defecto los guardamos en signals)
   @Input() set minWidth(value: string) {
     this._minWidth.set(value);
   }
@@ -45,7 +44,7 @@ export class SeccionComponent {
   }
   private _rightMargin = signal('5vw');
 
-  // Computed para el estilo dinámico
+
   style = computed(() => ({
     'min-width': this.minWidth,
     'max-width': this.maxWidth,
@@ -53,8 +52,7 @@ export class SeccionComponent {
     'margin-right': this.rightMargin,
   }));
 
-  // Asegurarnos de que el número de pregunta siempre tenga un valor
   get numeroPregunta(): number {
-    return this.pregunta.numero ?? 1; // Si no se pasa el número, se asigna 1
+    return this.pregunta.numero ?? 1; 
   }
 }

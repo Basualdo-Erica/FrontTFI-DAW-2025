@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 
 interface Opcion {
   texto: string;
-  numero?: number; // opcional, por si quieres numerar opciones después
+  numero?: number; 
 }
 
 @Component({
@@ -21,14 +21,14 @@ export class GestionPreguntaDialogComponent implements OnChanges {
   @Input() visible: boolean = false;
   @Output() visibleChange = new EventEmitter<boolean>();
 
-  @Input() preguntaParaEditar: any = null;  // Aquí recibimos la pregunta para editar
+  @Input() preguntaParaEditar: any = null; 
 
   @Output() preguntaCreada = new EventEmitter<any>();
 
   textoPregunta: string = '';
   tipoPregunta: string = 'LIBRE';
   opciones: Opcion[] = [];
-  numeroPregunta: number | null = null; // <-- Guardamos el número para editar
+  numeroPregunta: number | null = null; 
 
   constructor(private messageService: MessageService) {}
 
@@ -36,7 +36,7 @@ export class GestionPreguntaDialogComponent implements OnChanges {
     if (changes['preguntaParaEditar'] && this.preguntaParaEditar) {
       this.cargarPreguntaParaEdicion(this.preguntaParaEditar);
     }
-    // Si el diálogo se oculta, resetear el formulario
+    
     if (changes['visible'] && !this.visible) {
       this.resetForm();
     }
@@ -46,7 +46,7 @@ export class GestionPreguntaDialogComponent implements OnChanges {
     this.textoPregunta = pregunta.texto || '';
     this.tipoPregunta = pregunta.tipo || 'LIBRE';
     this.opciones = pregunta.opciones ? [...pregunta.opciones] : [];
-    this.numeroPregunta = pregunta.numero ?? null; // Guardar número para emitir
+    this.numeroPregunta = pregunta.numero ?? null; 
   }
 
   cerrarDialog() {
@@ -98,7 +98,7 @@ export class GestionPreguntaDialogComponent implements OnChanges {
       texto: this.textoPregunta,
       tipo: this.tipoPregunta,
       opciones: this.opciones,
-      numero: this.numeroPregunta // Emitir el número para mantenerlo al editar
+      numero: this.numeroPregunta 
     });
 
     this.cerrarDialog();

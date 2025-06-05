@@ -82,12 +82,10 @@ export class CreacionEncuestaComponent {
 
   editarPregunta(index: number) {
     const pregunta = this.preguntas.at(index).value;
-
-    // Asegurar que texto y tipo no sean undefined para evitar error
     if (pregunta) {
       this.preguntaSeleccionadaParaEdicion = {
         texto: pregunta.texto ?? '',
-        tipo: pregunta.tipo ?? TiposRespuestaEnum.TEXTO, // Ajusta el default si quieres
+        tipo: pregunta.tipo ?? TiposRespuestaEnum.TEXTO, 
         opciones: pregunta.opciones ?? [],
         numero: pregunta.numero,
       };
@@ -151,7 +149,6 @@ export class CreacionEncuestaComponent {
 
   eliminarPregunta(index: number) {
     this.preguntas.removeAt(index);
-    // Reenumerar los números de pregunta después de eliminar
     this.preguntas.controls.forEach((control, i) => {
       if (control.value) control.setValue({ ...control.value, numero: i + 1 });
     });
