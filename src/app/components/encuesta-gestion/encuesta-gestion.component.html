@@ -1,0 +1,43 @@
+<div *ngIf="error">
+  <p-card>
+    <h3>{{ error }}</h3>
+  </p-card>
+</div>
+<p-panel *ngIf="encuesta" header="Gestionar encuesta">
+  <ng-template #icons>
+    <p-button icon="pi pi-trash" severity="secondary" rounded (click)="modalEliminar = true" /></ng-template>
+  <div *ngIf="encuesta">
+    <h2>Titulo: {{ encuesta.nombre }}</h2>
+    <div>
+      <div>
+        <p>Enlace de participación</p>
+        <div>
+          <a [href]="linkRespuesta" target="_blank">{{ linkRespuesta }}</a>
+        </div>
+      </div>
+      <div>
+        <p>Enlace de resultados</p>
+        <div>
+          <a [href]="linkResultados" target="_blank">{{ linkResultados }}</a>
+        </div>
+      </div>
+    </div>
+    <h4>Preguntas</h4>
+    <ul>
+      <li *ngFor="let pregunta of encuesta.preguntas; let i = index">
+        {{ i + 1 }}. {{ pregunta.texto }}
+        <span>({{ pregunta.tipo }})</span>
+      </li>
+    </ul>
+  </div>
+</p-panel>
+<p-dialog [(visible)]="modalEliminar" [modal]="true" [closable]="false">
+  <div>
+    <h3>Eliminar encuesta</h3>
+  </div>
+  <ng-template #footer>
+    <button pButton type="button" label="Cancelar" (click)="modalEliminar = false"></button>
+    <button pButton type="button" icon="pi pi-trash" severity="danger" label="Eliminar"
+      (click)="eliminarEncuesta()"></button>
+  </ng-template>
+</p-dialog>

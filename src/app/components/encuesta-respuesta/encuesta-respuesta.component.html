@@ -1,0 +1,39 @@
+<div *ngIf="!encuesta">
+  <p-card>
+    <h3>No se pudo encontrar la encuesta</h3>
+  </p-card>
+</div>
+<div *ngIf="encuesta && encuesta.estado === 'ELIMINADO'">
+  <p-card>
+    <h3>Encuesta eliminada</h3>
+  </p-card>
+</div>
+<div *ngIf="encuesta && encuesta.estado === 'PUBLICADO'">
+  <h2>{{ encuesta.nombre }}</h2>
+  <form [formGroup]="form" (ngSubmit)="enviarRespuestas()">
+    <p-panel *ngFor="let pregunta of preguntas; let i = index" header="Pregunta N°{{ i + 1 }}">
+      <div>
+        <label>{{ pregunta.texto }}</label>
+        <input *ngIf="pregunta.tipo === 'ABIERTA'" type="text" pInputText [formControlName]="pregunta.id.toString()" />
+        <div *ngIf="pregunta.tipo === 'OPCION_MULTIPLE_SELECCION_SIMPLE'">
+          <div *ngFor="let opcion of pregunta.opciones">
+            <label>
+              <input type="radio" [value]="opcion.id" [formControlName]="pregunta.id.toString()" />
+              {{ opcion.texto }}
+            </label>
+          </div>
+        </div>
+        <div *ngIf="pregunta.tipo === 'OPCION_MULTIPLE_SELECCION_MULTIPLE'">
+          <div *ngFor="let opcion of pregunta.opciones">
+            <input type="checkbox" [checked]="isChecked(pregunta.id, opcion.id)"
+              (change)="onCheckboxChange(pregunta.id, opcion.id, $event)" />
+            <label>
+              {{ opcion.texto }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+    <button pButton type="submit">Enviar respuestas</button>
+  </form>
+</div>

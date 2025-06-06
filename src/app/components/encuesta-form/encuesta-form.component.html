@@ -1,0 +1,68 @@
+<h2>Crear encuesta</h2>
+<form [formGroup]="encuestaForm" (ngSubmit)="guardarEncuesta()">
+  <div>
+    <label for="nombre">Titulo de la encuesta</label>
+    <input id="nombre" type="text" pInputText formControlName="nombre" />
+  </div>
+  <div *ngIf="encuesta">
+    <div *ngFor="let pregunta of encuesta.preguntas; let i = index">
+      <p-panel header="Pregunta N°{{ i + 1 }}">
+        <ng-template #icons>
+          <p-button icon="pi pi-trash" severity="secondary" rounded (click)="eliminarPreguntaActual(pregunta.id)" />
+        </ng-template>
+        <p><strong>Pregunta:</strong> {{ pregunta.texto }}</p>
+        <p><strong>Tipo de pregunta:</strong> {{ pregunta.tipo }}</p>
+        <div *ngIf="pregunta.opciones && pregunta.opciones.length > 1">
+          <p><strong>Opciones:</strong></p>
+          <ul>
+            <li *ngFor="let opcion of pregunta.opciones">
+              <strong>{{ opcion.numero }}.</strong> {{ opcion.texto }}
+            </li>
+          </ul>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+  <div formArrayName="preguntas">
+    <div *ngFor="let preguntaCtrls of preguntas.controls; let i = index" [formGroupName]="i">
+      <p-panel header="Pregunta N°{{ (encuesta?.preguntas?.length ?? 0) + i + 1 }}">
+        <ng-template #icons>
+          <p-button icon="pi pi-trash" severity="secondary" rounded (click)="eliminarPregunta(i)" />
+        </ng-template>
+        <div>
+          <label>Texto</label>
+          <input type="text" pInputText formControlName="texto" />
+        </div>
+        <div>
+          <label>Tipo de respuesta</label>
+          <p-select [options]="getTiposPreguntaCadena()" formControlName="tipo" optionLabel="cadena" optionValue="tipo"
+            placeholder="Seleccionar tipo">
+          </p-select>
+        </div>
+        <div *ngIf="
+            $any(preguntaCtrls).get('tipo')?.value === tiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_SIMPLE ||
+            $any(preguntaCtrls).get('tipo')?.value === tiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_MULTIPLE
+          " formArrayName="opciones">
+          <label>Opciones</label>
+          <div *ngFor="let opcionCtrl of getOpciones($any(preguntaCtrls))!.controls; let j = index" [formGroupName]="j">
+            <div>
+              <input type="text" pInputText formControlName="texto" placeholder="Texto de la opción" />
+              <button pButton icon="pi pi-trash" severity="danger"  type="button"
+                (click)="eliminarOpcion($any(preguntaCtrls), j)">
+              </button>
+            </div>
+          </div>
+          <button type="button" pButton icon="pi pi-plus" severity="secondary" label="Agregar opción"
+            (click)="agregarOpcion($any(preguntaCtrls))">
+          </button>
+        </div>
+      </p-panel>
+    </div>
+  </div>
+  <button type="button" pButton icon="pi pi-plus" severity="secondary" label="Agregar pregunta"
+    (click)="agregarPregunta()">
+  </button>
+  <button type="submit" pButton label="Guardar" [disabled]="encuestaForm.invalid">
+  </button>
+</form>
+<p-toast></p-toast>

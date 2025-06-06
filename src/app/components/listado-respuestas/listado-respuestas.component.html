@@ -1,0 +1,30 @@
+<div *ngIf="respuestas.length === 0">
+  <p-card>
+    <h3>No hay respuestas</h3>
+  </p-card>
+</div>
+<div *ngIf="respuestas.length > 0">
+  <h2>Respuestas</h2>
+  <div>
+    <label for="limiteInput">Respuestas por página:</label>
+    <p-inputnumber [(ngModel)]="limite" [showButtons]="true" inputId="limiteInput" [min]="1"
+      [max]="20" (onInput)="cambiarLimite()" />
+  </div>
+  <div *ngFor="let formulario of respuestas; let i = index">
+    <div>Participante N°: {{ getParticipante(i) }}</div>
+    <ul>
+      <li *ngFor="let resp of formulario.respuestas">
+        <div>Pregunta: {{ resp.pregunta.texto }}</div>
+        <div>Respuesta {{ resp.respuesta }}</div>
+        <p-divider />
+      </li>
+    </ul>
+  </div>
+  <div>
+    <button pButton label="Anterior" icon="pi pi-angle-left" severity="secondary" (click)="anterior()"
+      [disabled]="pagina <= 1"></button>
+    <span> Página {{ pagina }} de {{ totalPaginas }} </span>
+    <button pButton label="Siguiente" icon="pi pi-angle-right" severity="secondary" iconPos="right"
+      (click)="siguiente()" [disabled]="pagina * limite >= total"></button>
+  </div>
+</div>

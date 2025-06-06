@@ -1,0 +1,38 @@
+<app-encuesta-form (guardarEncuestaCreada)="guardarEncuesta($event)"></app-encuesta-form>
+<p-dialog [(visible)]="mostrarModal" [modal]="true" [closable]="false" (onHide)="gestionar()">
+  <div>
+    <h3>Encuesta guardada</h3>
+  </div>
+  <div>
+  <!-- Enlace de participación -->
+  <div>
+    <p>Enlace de participación</p>
+    <div>
+      <a [href]="linkRespuesta" target="_blank">{{ linkRespuesta }}</a>
+      <button (click)="toggleQR('respuesta')">Mostrar QR</button>
+      @if (mostrarQR.respuesta) {
+        <div class="qr-container">
+          <qrcode [qrdata]="linkRespuesta" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+        </div>
+      }
+    </div>
+  </div>
+  <!-- Enlace de resultados -->
+  <div>
+    <p>Enlace de resultados</p>
+    <div>
+      <a [href]="linkResultados" target="_blank">{{ linkResultados }}</a>
+      <button (click)="toggleQR('resultados')">Mostrar QR</button>
+      @if (mostrarQR.resultados) {
+        <div class="qr-container">
+          <qrcode [qrdata]="linkResultados" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+  <ng-template #footer>
+    <button pButton type="button" label="Volver" severity="secondary" (click)="volver()"></button>
+    <button pButton type="button" label="Gestionar encuesta" severity="primary" (click)="gestionar()"></button>
+  </ng-template>
+</p-dialog>
