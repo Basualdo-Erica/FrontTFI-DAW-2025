@@ -1,0 +1,66 @@
+.card-mensaje {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #2e2e2e !important;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.card-mensaje h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ffcc00;
+}
+
+.encuesta-respuesta {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.encuesta-respuesta h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.pregunta-item {
+  margin-bottom: 1.5rem;
+}
+
+.pregunta-item label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ddd;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.radio-group label,
+.checkbox-group label {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ccc;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: #4caf50;
+  transform: scale(1.2);
+}
+
+button[type="submit"] {
+  margin-top: 1.5rem;
+  width: 100%;
+  font-size: 1rem;
+}

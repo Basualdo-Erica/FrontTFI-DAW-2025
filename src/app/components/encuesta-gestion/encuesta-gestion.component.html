@@ -1,21 +1,23 @@
 <div *ngIf="error">
-  <p-card>
+  <p-card class="card-error">
     <h3>{{ error }}</h3>
   </p-card>
 </div>
-<p-panel *ngIf="encuesta" header="Gestionar encuesta">
+
+<p-panel *ngIf="encuesta" header="Gestionar encuesta" class="panel-gestion">
   <ng-template #icons>
-    <p-button icon="pi pi-trash" severity="secondary" rounded (click)="modalEliminar = true" /></ng-template>
+    <p-button icon="pi pi-trash" severity="secondary" rounded (click)="modalEliminar = true" />
+  </ng-template>
   <div *ngIf="encuesta">
     <h2>Titulo: {{ encuesta.nombre }}</h2>
-    <div>
-      <div>
+    <div class="enlaces-container">
+      <div class="enlace-bloque">
         <p>Enlace de participación</p>
         <div>
           <a [href]="linkRespuesta" target="_blank">{{ linkRespuesta }}</a>
         </div>
       </div>
-      <div>
+      <div class="enlace-bloque">
         <p>Enlace de resultados</p>
         <div>
           <a [href]="linkResultados" target="_blank">{{ linkResultados }}</a>
@@ -23,7 +25,7 @@
       </div>
     </div>
     <h4>Preguntas</h4>
-    <ul>
+    <ul class="preguntas-lista">
       <li *ngFor="let pregunta of encuesta.preguntas; let i = index">
         {{ i + 1 }}. {{ pregunta.texto }}
         <span>({{ pregunta.tipo }})</span>
@@ -31,8 +33,9 @@
     </ul>
   </div>
 </p-panel>
+
 <p-dialog [(visible)]="modalEliminar" [modal]="true" [closable]="false">
-  <div>
+  <div class="dialogo-eliminar">
     <h3>Eliminar encuesta</h3>
   </div>
   <ng-template #footer>

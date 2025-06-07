@@ -1,5 +1,70 @@
-.qr-container {
-  margin-top: 10px;
+.panel-gestion {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  color: #ffffff;
+}
+
+.panel-gestion h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.enlaces-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.enlace-bloque {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #333;
+}
+
+.enlace-bloque p {
+  margin: 0 0 0.3rem 0;
+  font-weight: 500;
+}
+
+.enlace-bloque a {
+  color: #4da6ff;
+  word-break: break-all;
+  font-size: 0.95rem;
+  text-decoration: underline;
+}
+
+.preguntas-lista {
+  padding-left: 1.2rem;
+  margin-top: 1rem;
+}
+
+.preguntas-lista li {
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+span {
+  color: #aaa;
+  font-style: italic;
+  margin-left: 0.4rem;
+}
+
+.card-error {
+  max-width: 600px;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  background-color: #2e2e2e !important;
+  color: #f44336;
+  border-radius: 6px;
+  border: 1px solid #ff1744;
+}
+
+.dialogo-eliminar h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #fff;
 }

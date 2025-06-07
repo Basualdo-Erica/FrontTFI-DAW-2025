@@ -1,0 +1,46 @@
+.lista-encuestas {
+  max-width: 800px;
+  margin: 2rem auto;
+  color: #fff;
+}
+
+.lista-encuestas h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #ffcc00;
+}
+
+.encuesta-item {
+  background-color: #2e2e2e;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #444;
+}
+
+.encuesta-item ul {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.encuesta-item li {
+  margin-bottom: 0.3rem;
+  color: #ddd;
+}
+
+.encuesta-item button {
+  margin-top: 1rem;
+}
+
+.paginacion {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.paginacion button {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,133 @@
+.form-titulo {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #f5f5f5;
+  text-align: center;
+}
+
+.form-encuesta {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: #fff;
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.form-input,
+.p-dropdown,
+.p-inputtext {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background-color: #1f1f1f !important;
+  border: 1px solid #444 !important;
+  color: #fff !important;
+  font-size: 1rem;
+}
+
+.p-dropdown-label {
+  color: #fff !important;
+}
+
+.p-panel {
+  background-color: #2a2a2a !important;
+  border: 1px solid #3a3a3a !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.p-panel .p-panel-header {
+  background: #333 !important;
+  color: #fff !important;
+  font-weight: 600;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.lista-opciones {
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  color: #ddd;
+}
+
+.opciones-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.opcion-item {
+  background: #1c1c1c;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+.opcion-input-container {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.form-botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+button[pButton] {
+  font-weight: 600;
+  border-radius: 6px;
+  min-width: 150px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+}
+
+button[pButton].p-button-secondary {
+  background-color: #444 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+button[pButton].p-button-secondary:hover {
+  background-color: #666 !important;
+}
+
+button[pButton].p-button-danger {
+  background-color: #a10000 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+button[pButton].p-button-danger:hover {
+  background-color: #cc0000 !important;
+}
+
+button[pButton].p-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.p-toast {
+  z-index: 9999 !important;
+}
+.form-input,
+.p-dropdown,
+.p-inputtext,
+button[pButton] {
+  transition: all 0.2s ease;
+}

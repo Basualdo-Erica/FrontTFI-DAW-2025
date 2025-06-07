@@ -1,20 +1,23 @@
-<h2>Crear encuesta</h2>
-<form [formGroup]="encuestaForm" (ngSubmit)="guardarEncuesta()">
-  <div>
-    <label for="nombre">Titulo de la encuesta</label>
-    <input id="nombre" type="text" pInputText formControlName="nombre" />
+<h2 class="form-titulo">Crear encuesta</h2>
+
+<form class="form-encuesta" [formGroup]="encuestaForm" (ngSubmit)="guardarEncuesta()">
+  <div class="form-grupo">
+    <label for="nombre" class="form-label">Titulo de la encuesta</label>
+    <input id="nombre" type="text" pInputText formControlName="nombre" class="form-input" />
   </div>
-  <div *ngIf="encuesta">
-    <div *ngFor="let pregunta of encuesta.preguntas; let i = index">
+
+  <div *ngIf="encuesta" class="preguntas-existentes">
+    <div *ngFor="let pregunta of encuesta.preguntas; let i = index" class="pregunta-panel">
       <p-panel header="Pregunta N°{{ i + 1 }}">
         <ng-template #icons>
           <p-button icon="pi pi-trash" severity="secondary" rounded (click)="eliminarPreguntaActual(pregunta.id)" />
         </ng-template>
         <p><strong>Pregunta:</strong> {{ pregunta.texto }}</p>
         <p><strong>Tipo de pregunta:</strong> {{ pregunta.tipo }}</p>
+
         <div *ngIf="pregunta.opciones && pregunta.opciones.length > 1">
           <p><strong>Opciones:</strong></p>
-          <ul>
+          <ul class="lista-opciones">
             <li *ngFor="let opcion of pregunta.opciones">
               <strong>{{ opcion.numero }}.</strong> {{ opcion.texto }}
             </li>
@@ -23,46 +26,82 @@
       </p-panel>
     </div>
   </div>
-  <div formArrayName="preguntas">
-    <div *ngFor="let preguntaCtrls of preguntas.controls; let i = index" [formGroupName]="i">
+
+  <div formArrayName="preguntas" class="preguntas-nuevas">
+    <div *ngFor="let preguntaCtrls of preguntas.controls; let i = index" [formGroupName]="i" class="pregunta-panel">
       <p-panel header="Pregunta N°{{ (encuesta?.preguntas?.length ?? 0) + i + 1 }}">
         <ng-template #icons>
           <p-button icon="pi pi-trash" severity="secondary" rounded (click)="eliminarPregunta(i)" />
         </ng-template>
-        <div>
-          <label>Texto</label>
-          <input type="text" pInputText formControlName="texto" />
+
+        <div class="form-grupo">
+          <label class="form-label">Texto</label>
+          <input type="text" pInputText formControlName="texto" class="form-input" />
         </div>
-        <div>
-          <label>Tipo de respuesta</label>
-          <p-select [options]="getTiposPreguntaCadena()" formControlName="tipo" optionLabel="cadena" optionValue="tipo"
-            placeholder="Seleccionar tipo">
+
+        <div class="form-grupo">
+          <label class="form-label">Tipo de respuesta</label>
+          <p-select
+            [options]="getTiposPreguntaCadena()"
+            formControlName="tipo"
+            optionLabel="cadena"
+            optionValue="tipo"
+            placeholder="Seleccionar tipo"
+          >
           </p-select>
         </div>
-        <div *ngIf="
+
+        <div
+          *ngIf="
             $any(preguntaCtrls).get('tipo')?.value === tiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_SIMPLE ||
             $any(preguntaCtrls).get('tipo')?.value === tiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_MULTIPLE
-          " formArrayName="opciones">
-          <label>Opciones</label>
-          <div *ngFor="let opcionCtrl of getOpciones($any(preguntaCtrls))!.controls; let j = index" [formGroupName]="j">
-            <div>
-              <input type="text" pInputText formControlName="texto" placeholder="Texto de la opción" />
-              <button pButton icon="pi pi-trash" severity="danger"  type="button"
-                (click)="eliminarOpcion($any(preguntaCtrls), j)">
+          "
+          formArrayName="opciones"
+          class="form-grupo opciones-container"
+        >
+          <label class="form-label">Opciones</label>
+          <div *ngFor="let opcionCtrl of getOpciones($any(preguntaCtrls))!.controls; let j = index" [formGroupName]="j" class="opcion-item">
+            <div class="opcion-input-container">
+              <input type="text" pInputText formControlName="texto" class="form-input" placeholder="Texto de la opción" />
+              <button
+                pButton
+                icon="pi pi-trash"
+                severity="danger"
+                type="button"
+                (click)="eliminarOpcion($any(preguntaCtrls), j)"
+              >
               </button>
             </div>
           </div>
-          <button type="button" pButton icon="pi pi-plus" severity="secondary" label="Agregar opción"
-            (click)="agregarOpcion($any(preguntaCtrls))">
+
+          <button
+            type="button"
+            pButton
+            icon="pi pi-plus"
+            severity="secondary"
+            label="Agregar opción"
+            (click)="agregarOpcion($any(preguntaCtrls))"
+          >
           </button>
         </div>
       </p-panel>
     </div>
   </div>
-  <button type="button" pButton icon="pi pi-plus" severity="secondary" label="Agregar pregunta"
-    (click)="agregarPregunta()">
-  </button>
-  <button type="submit" pButton label="Guardar" [disabled]="encuestaForm.invalid">
-  </button>
+
+  <div class="form-botones">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-plus"
+      severity="secondary"
+      label="Agregar pregunta"
+      (click)="agregarPregunta()"
+    >
+    </button>
+
+    <button type="submit" pButton label="Guardar" [disabled]="encuestaForm.invalid">
+    </button>
+  </div>
 </form>
+
 <p-toast></p-toast>

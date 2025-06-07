@@ -1,19 +1,23 @@
-<div *ngIf="encuestas.length === 0">
-  No hay encuestas
-</div>
-<div *ngFor="let encuesta of encuestas">
-  <h3> Titulo: {{ encuesta.nombre }}</h3>
-  <ul>
-    <li *ngFor="let pregunta of encuesta.preguntas">
-      {{ pregunta.numero }}. {{ pregunta.texto }}
-      <ul *ngIf="pregunta.opciones && pregunta.opciones.length > 0">
-        <li *ngFor="let opcion of pregunta.opciones">- {{ opcion.texto }}</li>
-      </ul>
-    </li>
-    <button [routerLink]="['/respuestas', encuesta.id]">Ver Respuestas</button>
-  </ul>
-</div>
-<div>
-  <button (click)="anterior()" [disabled]="pagina <= 1">Anterior</button>
-  <button (click)="siguiente()" [disabled]="pagina * limite >= total">Siguiente</button>
+<div class="lista-encuestas">
+  <div *ngIf="encuestas.length === 0" class="encuesta-item">
+    <p>No hay encuestas</p>
+  </div>
+
+  <div *ngFor="let encuesta of encuestas" class="encuesta-item">
+    <h3>Título: {{ encuesta.nombre }}</h3>
+    <ul>
+      <li *ngFor="let pregunta of encuesta.preguntas">
+        {{ pregunta.numero }}. {{ pregunta.texto }}
+        <ul *ngIf="pregunta.opciones && pregunta.opciones.length > 0">
+          <li *ngFor="let opcion of pregunta.opciones">- {{ opcion.texto }}</li>
+        </ul>
+      </li>
+    </ul>
+    <button pButton [routerLink]="['/respuestas', encuesta.id]">Ver Respuestas</button>
+  </div>
+
+  <div class="paginacion">
+    <button pButton (click)="paginaAnterior()" [disabled]="pagina <= 1" label="Anterior"></button>
+    <button pButton (click)="paginaSiguiente()" [disabled]="pagina * limite >= total" label="Siguiente"></button>
+  </div>
 </div>

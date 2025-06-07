@@ -1,36 +1,37 @@
 <div *ngIf="!encuesta">
-  <p-card>
+  <p-card class="card-mensaje">
     <h3>No se pudo encontrar la encuesta</h3>
   </p-card>
 </div>
+
 <div *ngIf="encuesta && encuesta.estado === 'ELIMINADO'">
-  <p-card>
+  <p-card class="card-mensaje">
     <h3>Encuesta eliminada</h3>
   </p-card>
 </div>
-<div *ngIf="encuesta && encuesta.estado === 'PUBLICADO'">
+
+<div *ngIf="encuesta && encuesta.estado === 'PUBLICADO'" class="encuesta-respuesta">
   <h2>{{ encuesta.nombre }}</h2>
   <form [formGroup]="form" (ngSubmit)="enviarRespuestas()">
-    <p-panel *ngFor="let pregunta of preguntas; let i = index" header="Pregunta N°{{ i + 1 }}">
+    <p-panel *ngFor="let pregunta of preguntas; let i = index" header="Pregunta N°{{ i + 1 }}" class="pregunta-item">
       <div>
         <label>{{ pregunta.texto }}</label>
+
         <input *ngIf="pregunta.tipo === 'ABIERTA'" type="text" pInputText [formControlName]="pregunta.id.toString()" />
-        <div *ngIf="pregunta.tipo === 'OPCION_MULTIPLE_SELECCION_SIMPLE'">
-          <div *ngFor="let opcion of pregunta.opciones">
-            <label>
-              <input type="radio" [value]="opcion.id" [formControlName]="pregunta.id.toString()" />
-              {{ opcion.texto }}
-            </label>
-          </div>
+
+        <div *ngIf="pregunta.tipo === 'OPCION_MULTIPLE_SELECCION_SIMPLE'" class="radio-group">
+          <label *ngFor="let opcion of pregunta.opciones">
+            <input type="radio" [value]="opcion.id" [formControlName]="pregunta.id.toString()" />
+            {{ opcion.texto }}
+          </label>
         </div>
-        <div *ngIf="pregunta.tipo === 'OPCION_MULTIPLE_SELECCION_MULTIPLE'">
-          <div *ngFor="let opcion of pregunta.opciones">
+
+        <div *ngIf="pregunta.tipo === 'OPCION_MULTIPLE_SELECCION_MULTIPLE'" class="checkbox-group">
+          <label *ngFor="let opcion of pregunta.opciones">
             <input type="checkbox" [checked]="isChecked(pregunta.id, opcion.id)"
               (change)="onCheckboxChange(pregunta.id, opcion.id, $event)" />
-            <label>
-              {{ opcion.texto }}
-            </label>
-          </div>
+            {{ opcion.texto }}
+          </label>
         </div>
       </div>
     </p-panel>

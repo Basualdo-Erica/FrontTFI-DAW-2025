@@ -1,38 +1,45 @@
-<app-encuesta-form (guardarEncuestaCreada)="guardarEncuesta($event)"></app-encuesta-form>
+<app-encuesta-form
+  class="form-encuesta"
+  (guardarEncuestaCreada)="guardarEncuesta($event)">
+</app-encuesta-form>
+
 <p-dialog [(visible)]="mostrarModal" [modal]="true" [closable]="false" (onHide)="gestionar()">
-  <div>
-    <h3>Encuesta guardada</h3>
-  </div>
-  <div>
-  <!-- Enlace de participación -->
-  <div>
-    <p>Enlace de participación</p>
-    <div>
-      <a [href]="linkRespuesta" target="_blank">{{ linkRespuesta }}</a>
-      <button (click)="toggleQR('respuesta')">Mostrar QR</button>
-      @if (mostrarQR.respuesta) {
-        <div class="qr-container">
-          <qrcode [qrdata]="linkRespuesta" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
-        </div>
-      }
+  <div class="modal-contenido">
+    <h3 class="modal-titulo">Encuesta guardada</h3>
+
+    <!-- Enlace de participación -->
+    <div class="seccion-enlace">
+      <p class="seccion-titulo">Enlace de participación</p>
+      <div class="enlace-contenedor">
+        <a class="enlace" [href]="linkRespuesta" target="_blank">{{ linkRespuesta }}</a>
+        <button class="btn-qr" (click)="toggleQR('respuesta')">Mostrar QR</button>
+        @if (mostrarQR.respuesta) {
+          <div class="qr-container">
+            <qrcode [qrdata]="linkRespuesta" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Enlace de resultados -->
+    <div class="seccion-enlace">
+      <p class="seccion-titulo">Enlace de resultados</p>
+      <div class="enlace-contenedor">
+        <a class="enlace" [href]="linkResultados" target="_blank">{{ linkResultados }}</a>
+        <button class="btn-qr" (click)="toggleQR('resultados')">Mostrar QR</button>
+        @if (mostrarQR.resultados) {
+          <div class="qr-container">
+            <qrcode [qrdata]="linkResultados" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+          </div>
+        }
+      </div>
     </div>
   </div>
-  <!-- Enlace de resultados -->
-  <div>
-    <p>Enlace de resultados</p>
-    <div>
-      <a [href]="linkResultados" target="_blank">{{ linkResultados }}</a>
-      <button (click)="toggleQR('resultados')">Mostrar QR</button>
-      @if (mostrarQR.resultados) {
-        <div class="qr-container">
-          <qrcode [qrdata]="linkResultados" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
-        </div>
-      }
-    </div>
-  </div>
-</div>
+
   <ng-template #footer>
-    <button pButton type="button" label="Volver" severity="secondary" (click)="volver()"></button>
-    <button pButton type="button" label="Gestionar encuesta" severity="primary" (click)="gestionar()"></button>
+    <div class="modal-footer">
+      <button pButton type="button" label="Volver" severity="secondary" (click)="volver()"></button>
+      <button pButton type="button" label="Gestionar encuesta" severity="primary" (click)="gestionar()"></button>
+    </div>
   </ng-template>
 </p-dialog>
