@@ -1,0 +1,18 @@
+<div class="enlaces-container">
+  <h2>🎉 ¡Felicidades! Creaste tu encuesta 🎉</h2>
+  <p>Acá tenés los enlaces para compartir o guardar:</p>
+
+  <div class="enlace-box">
+    <strong>Enlace de participación:</strong>
+    <p>{{ participationLink }}</p>
+    <button (click)="copiar(participationLink)">Copiar</button>
+  </div>
+
+  <div class="enlace-box">
+    <strong>Enlace de visualización:</strong>
+    <p>{{ resultsLink }}</p>
+    <button (click)="copiar(resultsLink)">Copiar</button>
+  </div>
+
+  <button class="volver" (click)="volverInicio()">Volver al inicio</button>
+</div>

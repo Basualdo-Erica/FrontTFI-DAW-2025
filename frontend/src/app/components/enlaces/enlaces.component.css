@@ -1,0 +1,27 @@
+.enlaces-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.enlace-box {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin: 1rem auto;
+  width: 80%;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.volver {
+  margin-top: 2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
